@@ -1,10 +1,12 @@
+using Kolokwium1.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-// builder.Services.AddScoped<>();
-// builder.Services.AddControllers();
+builder.Services.AddScoped<IBooksRepository, BooksRepository>();
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
@@ -15,7 +17,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// app.MapControllers();
+app.MapControllers();
 app.UseHttpsRedirection();
 
 
